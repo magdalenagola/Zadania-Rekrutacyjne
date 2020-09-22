@@ -19,6 +19,32 @@ import com.github.wojtechm.zadania_rekrutacyjne.tools.Level;
 class MergeSortedArrays {
 
     static int[] merge(int[] first, int[] second) {
-        return first;
+        if (first == null && second == null) return new int[]{};
+        if (first == null) return second;
+        if (second == null) return first;
+        int[] merged = new int[first.length + second.length];
+        int firstIndex = 0, secondIndex = 0, mergedIndex = 0;
+        while (firstIndex < first.length && secondIndex < second.length){
+            if (first[firstIndex] <= second[secondIndex]){
+                merged[mergedIndex] = first[firstIndex];
+                firstIndex++;
+                mergedIndex++;
+                continue;
+            }
+            merged[mergedIndex] = second[secondIndex];
+            secondIndex++;
+            mergedIndex++;
+        }
+        while (firstIndex < first.length){
+            merged[mergedIndex] = first[firstIndex];
+            mergedIndex++;
+            firstIndex++;
+        }
+        while (secondIndex < second.length){
+            merged[mergedIndex] = second[secondIndex];
+            mergedIndex++;
+            secondIndex++;
+        }
+        return merged;
     }
 }
