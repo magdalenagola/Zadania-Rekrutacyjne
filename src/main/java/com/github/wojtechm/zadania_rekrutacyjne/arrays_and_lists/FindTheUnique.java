@@ -3,7 +3,8 @@ package com.github.wojtechm.zadania_rekrutacyjne.arrays_and_lists;
 import com.github.wojtechm.zadania_rekrutacyjne.tools.Difficulty;
 import com.github.wojtechm.zadania_rekrutacyjne.tools.Level;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Given a list of some elements
@@ -19,8 +20,11 @@ import java.util.List;
  */
 @Difficulty(Level.MEDIUM)
 class FindTheUnique {
-
     static <T extends Comparable<T>> T findUnique(List<T> list) {
-        return null;
+        if (list == null || list.size() <= 2) throw new IllegalArgumentException();
+        return list.stream()
+                .filter(e -> Collections.frequency(list, e) == 1)
+                .collect(Collectors.toList())
+                .get(0);
     }
 }
