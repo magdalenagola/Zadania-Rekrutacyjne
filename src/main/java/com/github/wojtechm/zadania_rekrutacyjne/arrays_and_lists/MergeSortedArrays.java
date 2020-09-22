@@ -26,24 +26,16 @@ class MergeSortedArrays {
         int firstIndex = 0, secondIndex = 0, mergedIndex = 0;
         while (firstIndex < first.length && secondIndex < second.length){
             if (first[firstIndex] <= second[secondIndex]){
-                merged[mergedIndex] = first[firstIndex];
-                firstIndex++;
-                mergedIndex++;
+                merged[mergedIndex++] = first[firstIndex++];
                 continue;
             }
-            merged[mergedIndex] = second[secondIndex];
-            secondIndex++;
-            mergedIndex++;
+            merged[mergedIndex++] = second[secondIndex++];
         }
         while (firstIndex < first.length){
-            merged[mergedIndex] = first[firstIndex];
-            mergedIndex++;
-            firstIndex++;
+            merged[mergedIndex++] = first[firstIndex++];
         }
         while (secondIndex < second.length){
-            merged[mergedIndex] = second[secondIndex];
-            mergedIndex++;
-            secondIndex++;
+            merged[mergedIndex++] = second[secondIndex++];
         }
         return merged;
     }
