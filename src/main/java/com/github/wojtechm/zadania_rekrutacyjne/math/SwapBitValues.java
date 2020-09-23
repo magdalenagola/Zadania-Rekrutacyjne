@@ -25,6 +25,12 @@ import com.github.wojtechm.zadania_rekrutacyjne.tools.Level;
 class SwapBitValues {
 
     static int swap(int n) {
-        return 0;
+        String binaryNumber = Integer.toBinaryString(n);
+        StringBuilder sB = new StringBuilder();
+        for(int i = 0; i < binaryNumber.length(); i++){
+            if (binaryNumber.charAt(i) == '1') sB.append("0");
+            else sB.append("1");
+        }
+        return Integer.parseInt(sB.toString(), 2);
     }
 }
