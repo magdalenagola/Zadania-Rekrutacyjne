@@ -27,6 +27,9 @@ import com.github.wojtechm.zadania_rekrutacyjne.tools.Level;
 class MaximumSumPath {
 
     static int maxSumPath(TreeNode root) {
-        return 0;
+        if (root == null) return 0;
+        int left = maxSumPath(root.left);
+        int right = maxSumPath(root.right);
+        return (Math.max(left, right)) + root.value;
     }
 }

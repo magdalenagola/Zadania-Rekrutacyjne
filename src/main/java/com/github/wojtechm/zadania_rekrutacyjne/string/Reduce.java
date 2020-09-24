@@ -3,6 +3,10 @@ package com.github.wojtechm.zadania_rekrutacyjne.string;
 import com.github.wojtechm.zadania_rekrutacyjne.tools.Difficulty;
 import com.github.wojtechm.zadania_rekrutacyjne.tools.Level;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.stream.Collectors;
+
 /**
  * Given a String consisting of alphabetic characters only,
  * write a method - reduce that returns the given string with all equal characters
@@ -20,6 +24,14 @@ import com.github.wojtechm.zadania_rekrutacyjne.tools.Level;
 class Reduce {
 
     static String reduce(String toReduce) {
-        return toReduce;
+        if (toReduce == null || toReduce.isEmpty()) throw new IllegalArgumentException("Cannot reduce null");
+        Deque<Character> lettersStack = new ArrayDeque<>();
+        for(int i = 0; i < toReduce.length(); i++){
+            if (lettersStack.isEmpty() || !lettersStack.peekLast().equals(toReduce.charAt(i))) lettersStack.add(toReduce.charAt(i));
+            else lettersStack.removeLast();
+        }
+        return lettersStack.stream()
+                .map(ch -> ch.toString())
+                .collect(Collectors.joining());
     }
 }
